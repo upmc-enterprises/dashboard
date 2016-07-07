@@ -71,6 +71,7 @@ func GetWorkloads(client *k8sClient.Client, heapsterClient client.HeapsterClient
 func GetWorkloadsFromChannels(channels *common.ResourceChannels,
 	heapsterClient client.HeapsterClient) (*Workloads, error) {
 
+	//emmieChan := make(chan *namespace.GetNamespaceList)
 	rsChan := make(chan *replicaset.ReplicaSetList)
 	jobChan := make(chan *job.JobList)
 	deploymentChan := make(chan *deployment.DeploymentList)
@@ -79,6 +80,12 @@ func GetWorkloadsFromChannels(channels *common.ResourceChannels,
 	dsChan := make(chan *daemonset.DaemonSetList)
 	psChan := make(chan *petset.PetSetList)
 	errChan := make(chan error, 7)
+
+	go func() {
+		rcList, err := replicationcontroller.GetReplicationControllerListFromChannels(channels)
+		errChan <- err
+		rcChan <- rcList
+	}()
 
 	go func() {
 		rcList, err := replicationcontroller.GetReplicationControllerListFromChannels(channels)

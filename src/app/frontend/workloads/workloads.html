@@ -15,6 +15,18 @@ limitations under the License.
 -->
 
 <div ng-if="!$ctrl.shouldShowZeroState()">
+  <kd-content-card ng-if="$ctrl.workloads.daemonSetList.emmieDeployments.length">
+    <kd-title>
+      <a ui-sref="emmie">
+        {{::$ctrl.i18n.MSG_WORKLOADS_EMMIE_DEPLOYMENTS_LABEL}}
+      </a>
+    </kd-title>
+    <kd-content>
+      <kd-daemon-set-card-list daemon-sets="$ctrl.workloads.daemonSetList" with-statuses="true">
+      </kd-daemon-set-card-list>
+    </kd-content>
+  </kd-content-card>
+
   <kd-content-card ng-if="$ctrl.workloads.daemonSetList.daemonSets.length">
     <kd-title>
       <a ui-sref="daemonset">

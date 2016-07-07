@@ -45,6 +45,9 @@ export class WorkloadsController {
 }
 
 const i18n = {
+  /** @export {string} @desc Label "Emmie Deployments", which appears above the deployments sets list on
+     the workloads page. */
+  MSG_WORKLOADS_EMMIE_DEPLOYMENTS_LABEL: goog.getMsg('Emmie Deployments'),
   /** @export {string} @desc Label "Daemon sets", which appears above the daemon sets list on
      the workloads page. */
   MSG_WORKLOADS_DEAMON_SETS_LABEL: goog.getMsg('Daemon sets'),
